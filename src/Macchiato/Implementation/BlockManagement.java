@@ -2,14 +2,22 @@ package Macchiato.Implementation;
 
 import Macchiato.Implementation.Expressions.Expression;
 
+/*
+W Macchiato 1.0 ta implementacja pozwalała na uruchomienie tylko jednej
+instancji Macchiato naraz. Macchiato 1.1 nie rozwiązuje tego problemu.
+*/
+
 public abstract class BlockManagement {
     private static class BlockInstance {
         private final BlockInstance previous;
         private final Integer[] variables;
+        private final char firstchar = 'a';
+        private final char lastchar = 'z';
 
         private BlockInstance(BlockInstance b) {
             previous = b;
-            variables = new Integer[26];
+            final int alphabetsize = lastchar - firstchar + 1;
+            variables = new Integer[alphabetsize];
         }
 
         private static class Reinitialisation extends Exception {
@@ -34,41 +42,41 @@ public abstract class BlockManagement {
         }
 
         private boolean wasDeclared(char c) {
-            if (c < 'a' || c > 'z') return false;
-            return variables[c - 'a'] != null;
+            if (c < firstchar || c > lastchar) return false;
+            return variables[c - firstchar] != null;
         }
 
         private void initialise(char c, int x) throws Reinitialisation, WrongSymbol {
-            if (c < 'a' || c > 'z') throw new WrongSymbol();
-            if (!wasDeclared(c)) variables[c - 'a'] = x;
+            if (c < firstchar || c > lastchar) throw new WrongSymbol();
+            if (!wasDeclared(c)) variables[c - firstchar] = x;
             else throw new Reinitialisation();
         }
 
         private void setVariable(char c, int x) throws NoVariable, WrongSymbol {
-            if (c < 'a' || c > 'z') throw new WrongSymbol();
-            if (wasDeclared(c)) variables[c - 'a'] = x;
+            if (c < firstchar || c > lastchar) throw new WrongSymbol();
+            if (wasDeclared(c)) variables[c - firstchar] = x;
             else if (previous == null) throw new NoVariable();
             else previous.setVariable(c, x);
         }
 
         private int getVariable(char c) throws NoVariable, WrongSymbol {
-            if (c < 'a' || c > 'z') throw new WrongSymbol();
-            if (wasDeclared(c)) return variables[c - 'a'];
+            if (c < firstchar || c > lastchar) throw new WrongSymbol();
+            if (wasDeclared(c)) return variables[c - firstchar];
             else if (previous == null) throw new NoVariable();
             else return previous.getVariable(c);
         }
 
         private String printValues() {
-            String ans = "Widoczne zmienne:\n";
-            for (char c = 'a'; c <= 'z'; c++) {
+            StringBuilder ans = new StringBuilder("Widoczne zmienne:\n");
+            for (char c = firstchar; c <= lastchar; c++) {
                 try {
                     String s = c + " = " + getVariable(c) + '\n';
-                    ans += s;
+                    ans.append(s);
                 } catch (NoVariable | WrongSymbol ignored) {
                 }
             }
-            ans += "Koniec listy zmiennych.";
-            return ans;
+            ans.append("Koniec listy zmiennych.");
+            return ans.toString();
         }
     }
 
