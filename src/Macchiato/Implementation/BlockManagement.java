@@ -1,5 +1,7 @@
 package Macchiato.Implementation;
 
+import Macchiato.Implementation.Expressions.Expression;
+
 public abstract class BlockManagement {
     private static class BlockInstance {
         private final BlockInstance previous;

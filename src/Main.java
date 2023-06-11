@@ -1,4 +1,4 @@
-import Macchiato.Implementation.Instruction;
+import Macchiato.Implementation.Instructions.Instruction;
 import Macchiato.Macchiato;
 
 import java.util.ArrayList;

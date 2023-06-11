@@ -1,6 +1,9 @@
 package Macchiato;
 
-import Macchiato.Implementation.*;
+import Macchiato.Implementation.BlockManagement;
+import Macchiato.Implementation.Conditions.*;
+import Macchiato.Implementation.Expressions.*;
+import Macchiato.Implementation.Instructions.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
