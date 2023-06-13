@@ -3,16 +3,14 @@ package Macchiato.Implementation.Instructions;
 import Macchiato.Implementation.Expressions.Expression;
 import Macchiato.Implementation.Expressions.ExpressionConst;
 
-import java.util.ArrayList;
-
 public class For extends Block {
     private final char variable;
     private final Expression limit;
     private Integer last;
     private int whichIteration;
 
-    public For(char variable, Expression limit, ArrayList<Instruction> list) {
-        super(list);
+    protected For(char variable, Expression limit, BlockBuilder f) {
+        super(f);
         this.variable = variable;
         this.limit = limit;
     }

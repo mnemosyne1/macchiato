@@ -10,8 +10,7 @@ import java.util.Scanner;
 
 public interface Macchiato {
     /**LAUNCHING PROGRAM*/
-    static void execute(ArrayList<Instruction> list) {
-        Block program = new Block(list);
+    static void execute(Block program) {
         try {
             while (!program.isFinished()) program.executeOne();
         } catch (Instruction.InstructionException | Instruction.ProgramFinishedException ex) {
@@ -22,8 +21,7 @@ public interface Macchiato {
         }
     }
 
-    static void debug(ArrayList<Instruction> list) {
-        Block program = new Block(list);
+    static void debug(Block program) {
         Scanner input = new Scanner(System.in);
         while (true) {
             String request = input.next();
@@ -74,7 +72,7 @@ public interface Macchiato {
     }
 
     /**INSTRUCTIONS*/
-    static Instruction newBlock(ArrayList<Instruction> list) {
+    /*static Instruction newBlock(ArrayList<Instruction> list) {
         return new Block(list);
     }
 
@@ -89,7 +87,7 @@ public interface Macchiato {
 
     static Instruction newFor(char variable, Expression limit, ArrayList<Instruction> list) {
         return new For(variable, limit, list);
-    }
+    }*/ // DEPRECATED
 
     static Instruction newPrint(Expression e) {
         return new Print(e);
