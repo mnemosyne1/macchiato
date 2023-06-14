@@ -5,7 +5,6 @@ import Macchiato.Implementation.Conditions.*;
 import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface Macchiato {
@@ -102,9 +101,10 @@ public interface Macchiato {
     }
 
     /**EXPRESSIONS*/
-    static Expression newConst(int value) {
+
+    /*static Expression newConst(int value) {
         return new ExpressionConst(value);
-    }
+    } DEPRECATED */
 
     static Expression newVariableExp(char c) {
         return new ExpressionVariable(c);

@@ -1,7 +1,7 @@
 package Macchiato.Implementation.Instructions;
 
+import Macchiato.Implementation.Expressions.Const;
 import Macchiato.Implementation.Expressions.Expression;
-import Macchiato.Implementation.Expressions.ExpressionConst;
 
 public class For extends Block {
     private final char variable;
@@ -25,7 +25,7 @@ public class For extends Block {
             if (whichIteration >= last) throw new ProgramFinishedException();
             list.get(index).executeOne();
             if (index == 0)
-                new Initialisation(variable, new ExpressionConst(whichIteration)).executeOne();
+                new Initialisation(variable, Const.of(whichIteration)).executeOne();
             if (list.get(index).isFinished()) {
                 index++;
                 if (index == list.size()) {
