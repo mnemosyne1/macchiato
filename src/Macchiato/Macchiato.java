@@ -116,19 +116,19 @@ public interface Macchiato {
 
     static Expression newDifference(Expression a, Expression b) {
         return new Difference(a, b);
-    } DEPRECATED*/
+    }
 
     static Expression newProduct(Expression a, Expression b) {
-        return new ExpressionProduct(a, b);
+        return new Product(a, b);
     }
 
     static Expression newDivision(Expression a, Expression b) {
-        return new ExpressionDivision(a, b);
+        return new Division(a, b);
     }
 
     static Expression newModulo(Expression a, Expression b) {
-        return new ExpressionModulo(a, b);
-    }
+        return new Modulo(a, b);
+    } DEPRECATED */
 
     /**CONDITIONS*/
     static Condition newEqual(Expression a, Expression b) {

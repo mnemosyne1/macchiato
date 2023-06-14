@@ -1,9 +1,13 @@
 package Macchiato.Implementation.Expressions;
 
-public class ExpressionDivision extends ExpressionCombo {
-    public ExpressionDivision(Expression exp1, Expression exp2) {
+public class Division extends ExpressionCombo {
+    // public because it's legacy constructor from Macchiato 1.0
+    public Division(Expression exp1, Expression exp2) {
         super(exp1, exp2);
         sign = '/';
+    }
+    public static Division of (Expression exp1, Expression exp2){
+        return new Division(exp1, exp2);
     }
 
     @Override

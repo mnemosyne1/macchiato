@@ -1,9 +1,13 @@
 package Macchiato.Implementation.Expressions;
 
-public class ExpressionProduct extends ExpressionCombo {
-    public ExpressionProduct(Expression exp1, Expression exp2) {
+public class Product extends ExpressionCombo {
+    // public because it's legacy constructor from Macchiato 1.0
+    public Product(Expression exp1, Expression exp2) {
         super(exp1, exp2);
         sign = '*';
+    }
+    public static Product of(Expression exp1, Expression exp2){
+        return new Product(exp1, exp2);
     }
 
     @Override
