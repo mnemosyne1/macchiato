@@ -110,13 +110,13 @@ public interface Macchiato {
         return new ExpressionVariable(c);
     }
 
-    static Expression newSum(Expression a, Expression b) {
-        return new ExpressionSum(a, b);
+    /*static Expression newSum(Expression a, Expression b) {
+        return new Sum(a, b);
     }
 
     static Expression newDifference(Expression a, Expression b) {
-        return new ExpressionDiff(a, b);
-    }
+        return new Difference(a, b);
+    } DEPRECATED*/
 
     static Expression newProduct(Expression a, Expression b) {
         return new ExpressionProduct(a, b);

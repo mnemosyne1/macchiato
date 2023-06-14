@@ -1,4 +1,6 @@
 import Macchiato.Implementation.Expressions.Const;
+import Macchiato.Implementation.Expressions.Difference;
+import Macchiato.Implementation.Expressions.Sum;
 import Macchiato.Implementation.Instructions.Block;
 import Macchiato.Macchiato;
 
@@ -14,17 +16,15 @@ public class Main {
         // example test from Macchiato 1.0
         var program = new Block.BlockBuilder()
             .initialiseVariable('n', Const.of(30))
-            .newfor('k', Macchiato.newDifference(
+            .newfor('k', Difference.of(
                     Macchiato.newVariableExp('n'), Const.of(1)),
                 new Block.BlockBuilder()
                     .initialiseVariable('p', Const.of(1))
-                    .assignVariable('k', Macchiato.newSum(
-                        Macchiato.newVariableExp('k'), Const.of(2)
-                    ))
-                    .newfor('i', Macchiato.newDifference(
+                    .assignVariable('k', Sum.of(Macchiato.newVariableExp('k'), Const.of(2)))
+                    .newfor('i', Difference.of(
                         Macchiato.newVariableExp('k'), Const.of(2)),
                         new Block.BlockBuilder()
-                            .assignVariable('i', Macchiato.newSum(Macchiato.newVariableExp('i'), Const.of(2)))
+                            .assignVariable('i', Sum.of(Macchiato.newVariableExp('i'), Const.of(2)))
                             .newif (Macchiato.newEqual(Macchiato.newModulo(Macchiato.newVariableExp('k'), Macchiato.newVariableExp('i')), Const.of(0)), new Block.BlockBuilder()
                                 .assignVariable('p', Const.of(0))
                             )
