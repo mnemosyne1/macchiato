@@ -1,7 +1,4 @@
-import Macchiato.Implementation.Expressions.Const;
-import Macchiato.Implementation.Expressions.Difference;
-import Macchiato.Implementation.Expressions.Modulo;
-import Macchiato.Implementation.Expressions.Sum;
+import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.Block;
 import Macchiato.Macchiato;
 
@@ -17,21 +14,20 @@ public class Main {
         // example test from Macchiato 1.0
         var program = new Block.BlockBuilder()
             .initialiseVariable('n', Const.of(30))
-            .newfor('k', Difference.of(
-                    Macchiato.newVariableExp('n'), Const.of(1)),
+            .newfor('k', Difference.of(Variable.named('n'), Const.of(1)),
                 new Block.BlockBuilder()
                     .initialiseVariable('p', Const.of(1))
-                    .assignVariable('k', Sum.of(Macchiato.newVariableExp('k'), Const.of(2)))
-                    .newfor('i', Difference.of(
-                        Macchiato.newVariableExp('k'), Const.of(2)),
+                    .assignVariable('k', Sum.of(Variable.named('k'), Const.of(2)))
+                    .newfor('i', Difference.of(Variable.named('k'), Const.of(2)),
                         new Block.BlockBuilder()
-                            .assignVariable('i', Sum.of(Macchiato.newVariableExp('i'), Const.of(2)))
-                            .newif (Macchiato.newEqual(Modulo.of(Macchiato.newVariableExp('k'), Macchiato.newVariableExp('i')), Const.of(0)), new Block.BlockBuilder()
+                            .assignVariable('i', Sum.of(Variable.named('i'), Const.of(2)))
+                            .newif (Macchiato.newEqual(Modulo.of(Variable.named('k'),
+                                Variable.named('i')), Const.of(0)), new Block.BlockBuilder()
                                 .assignVariable('p', Const.of(0))
                             )
                     )
-                    .newif(Macchiato.newEqual(Macchiato.newVariableExp('p'), Const.of(1)),
-                            new Block.BlockBuilder().print(Macchiato.newVariableExp('k'))
+                    .newif(Macchiato.newEqual(Variable.named('p'), Const.of(1)),
+                            new Block.BlockBuilder().print(Variable.named('k'))
                     )
             )
             .build();

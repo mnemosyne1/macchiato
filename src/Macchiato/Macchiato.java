@@ -104,13 +104,13 @@ public interface Macchiato {
 
     /*static Expression newConst(int value) {
         return new ExpressionConst(value);
-    } DEPRECATED */
-
-    static Expression newVariableExp(char c) {
-        return new ExpressionVariable(c);
     }
 
-    /*static Expression newSum(Expression a, Expression b) {
+    static Expression newVariableExp(char c) {
+        return new Variable(c);
+    }
+
+    static Expression newSum(Expression a, Expression b) {
         return new Sum(a, b);
     }
 
