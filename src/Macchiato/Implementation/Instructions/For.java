@@ -1,9 +1,7 @@
 package Macchiato.Implementation.Instructions;
 
+import Macchiato.Implementation.Expressions.Const;
 import Macchiato.Implementation.Expressions.Expression;
-import Macchiato.Implementation.Expressions.ExpressionConst;
-
-import java.util.ArrayList;
 
 public class For extends Block {
     private final char variable;
@@ -11,8 +9,8 @@ public class For extends Block {
     private Integer last;
     private int whichIteration;
 
-    public For(char variable, Expression limit, ArrayList<Instruction> list) {
-        super(list);
+    protected For(char variable, Expression limit, BlockBuilder f) {
+        super(f);
         this.variable = variable;
         this.limit = limit;
     }
@@ -27,7 +25,7 @@ public class For extends Block {
             if (whichIteration >= last) throw new ProgramFinishedException();
             list.get(index).executeOne();
             if (index == 0)
-                new Initialisation(variable, new ExpressionConst(whichIteration)).executeOne();
+                new Initialisation(variable, Const.of(whichIteration)).executeOne();
             if (list.get(index).isFinished()) {
                 index++;
                 if (index == list.size()) {

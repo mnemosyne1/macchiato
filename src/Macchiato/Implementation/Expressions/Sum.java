@@ -1,9 +1,13 @@
 package Macchiato.Implementation.Expressions;
 
-public class ExpressionSum extends ExpressionCombo {
-    public ExpressionSum(Expression exp1, Expression exp2) {
+public class Sum extends ExpressionCombo {
+    // public because it's legacy constructor from Macchiato 1.0
+    public Sum(Expression exp1, Expression exp2) {
         super(exp1, exp2);
         sign = '+';
+    }
+    public static Sum of (Expression exp1, Expression exp2){
+        return new Sum (exp1, exp2);
     }
 
     @Override

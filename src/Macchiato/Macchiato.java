@@ -5,13 +5,11 @@ import Macchiato.Implementation.Conditions.*;
 import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface Macchiato {
     /**LAUNCHING PROGRAM*/
-    static void execute(ArrayList<Instruction> list) {
-        Block program = new Block(list);
+    static void execute(Block program) {
         try {
             while (!program.isFinished()) program.executeOne();
         } catch (Instruction.InstructionException | Instruction.ProgramFinishedException ex) {
@@ -22,8 +20,7 @@ public interface Macchiato {
         }
     }
 
-    static void debug(ArrayList<Instruction> list) {
-        Block program = new Block(list);
+    static void debug(Block program) {
         Scanner input = new Scanner(System.in);
         while (true) {
             String request = input.next();
@@ -74,7 +71,7 @@ public interface Macchiato {
     }
 
     /**INSTRUCTIONS*/
-    static Instruction newBlock(ArrayList<Instruction> list) {
+    /*static Instruction newBlock(ArrayList<Instruction> list) {
         return new Block(list);
     }
 
@@ -89,7 +86,7 @@ public interface Macchiato {
 
     static Instruction newFor(char variable, Expression limit, ArrayList<Instruction> list) {
         return new For(variable, limit, list);
-    }
+    }*/ // DEPRECATED
 
     static Instruction newPrint(Expression e) {
         return new Print(e);
@@ -104,33 +101,34 @@ public interface Macchiato {
     }
 
     /**EXPRESSIONS*/
-    static Expression newConst(int value) {
+
+    /*static Expression newConst(int value) {
         return new ExpressionConst(value);
     }
 
     static Expression newVariableExp(char c) {
-        return new ExpressionVariable(c);
+        return new Variable(c);
     }
 
     static Expression newSum(Expression a, Expression b) {
-        return new ExpressionSum(a, b);
+        return new Sum(a, b);
     }
 
     static Expression newDifference(Expression a, Expression b) {
-        return new ExpressionDiff(a, b);
+        return new Difference(a, b);
     }
 
     static Expression newProduct(Expression a, Expression b) {
-        return new ExpressionProduct(a, b);
+        return new Product(a, b);
     }
 
     static Expression newDivision(Expression a, Expression b) {
-        return new ExpressionDivision(a, b);
+        return new Division(a, b);
     }
 
     static Expression newModulo(Expression a, Expression b) {
-        return new ExpressionModulo(a, b);
-    }
+        return new Modulo(a, b);
+    } DEPRECATED */
 
     /**CONDITIONS*/
     static Condition newEqual(Expression a, Expression b) {

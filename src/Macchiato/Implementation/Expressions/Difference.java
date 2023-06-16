@@ -1,9 +1,13 @@
 package Macchiato.Implementation.Expressions;
 
-public class ExpressionDiff extends ExpressionCombo {
-    public ExpressionDiff(Expression exp1, Expression exp2) {
+public class Difference extends ExpressionCombo {
+    // public because it's legacy constructor from Macchiato 1.0
+    public Difference(Expression exp1, Expression exp2) {
         super(exp1, exp2);
         sign = '-';
+    }
+    public static Difference of (Expression exp1, Expression exp2){
+        return new Difference(exp1, exp2);
     }
 
     @Override

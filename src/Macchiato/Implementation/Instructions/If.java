@@ -7,19 +7,25 @@ import java.util.ArrayList;
 public class If extends Block {
     private final Condition condition;
     private final ArrayList<Instruction> elselist;
+    private final BlockBuilder ifblock;
+    private final BlockBuilder elseblock;
     private Boolean conditionFulfilled;
     private Block chosenPath;
 
-    public If(Condition condition, ArrayList<Instruction> list, ArrayList<Instruction> elselist) {
-        this.list = list;
-        this.condition = condition;
-        this.elselist = elselist;
-    }
 
-    public If(Condition condition, ArrayList<Instruction> list) {
-        this.list = list;
-        this.condition = condition;
+    public If (Condition condition, BlockBuilder block){
+        super(block);
         this.elselist = new ArrayList<>();
+        this.condition = condition;
+        this.ifblock = block;
+        this.elseblock = new BlockBuilder();
+    }
+    public If (Condition condition, BlockBuilder block, BlockBuilder elseblock){
+        super (block);
+        this.elselist = elseblock.list;
+        this.ifblock = block;
+        this.elseblock = elseblock;
+        this.condition = condition;
     }
 
     @Override
@@ -27,7 +33,7 @@ public class If extends Block {
         try {
             if (conditionFulfilled == null) {
                 conditionFulfilled = condition.checkCondition();
-                chosenPath = conditionFulfilled ? new Block(list) : new Block(elselist);
+                chosenPath = conditionFulfilled ? ifblock.build() : elseblock.build();
             }
             if (chosenPath.isFinished()) throw new ProgramFinishedException();
             chosenPath.executeOne();

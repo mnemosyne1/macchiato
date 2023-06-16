@@ -2,11 +2,15 @@ package Macchiato.Implementation.Expressions;
 
 import Macchiato.Implementation.BlockManagement;
 
-public class ExpressionVariable implements Expression {
+public class Variable implements Expression {
     private final char variable;
 
-    public ExpressionVariable(char variable) {
+    // public because it's legacy constructor from Macchiato 1.0
+    public Variable(char variable) {
         this.variable = variable;
+    }
+    public static Variable named (char variable){
+        return new Variable(variable);
     }
 
     @Override

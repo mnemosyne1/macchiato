@@ -1,12 +1,16 @@
 package Macchiato.Implementation.Expressions;
 
-public class ExpressionConst implements Expression {
+public class Const implements Expression {
     private final int value;
 
-    public ExpressionConst(int value) {
+    // legacy constructor from Macchiato 1.0
+    public Const(int value) {
         this.value = value;
     }
 
+    public static Const of (int value){
+        return new Const (value);
+    }
     @Override
     public int evaluate() {
         return value;
