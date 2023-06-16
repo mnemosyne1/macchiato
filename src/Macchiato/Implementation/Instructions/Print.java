@@ -5,8 +5,11 @@ import Macchiato.Implementation.Expressions.Expression;
 public class Print extends InstructionSingle {
     private final Expression e;
 
-    public Print(Expression e) {
+    private Print(Expression e) {
         this.e = e;
+    }
+    public static Print the (Expression e){
+        return new Print(e);
     }
 
     @Override

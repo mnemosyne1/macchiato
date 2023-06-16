@@ -1,7 +1,6 @@
 package Macchiato;
 
 import Macchiato.Implementation.BlockManagement;
-import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.*;
 
 import java.io.*;
@@ -82,18 +81,5 @@ public interface Macchiato {
                 default -> System.out.println("Błędna instrukcja debuggera.");
             }
         }
-    }
-
-    /**INSTRUCTIONS*/
-    static Instruction newPrint(Expression e) {
-        return new Print(e);
-    }
-
-    static Instruction newInitialisation(char c, Expression e) {
-        return new Initialisation(c, e);
-    }
-
-    static Instruction newAssignment(char c, Expression e) {
-        return new Assignment(c, e);
     }
 }

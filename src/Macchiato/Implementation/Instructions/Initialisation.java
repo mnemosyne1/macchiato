@@ -4,8 +4,11 @@ import Macchiato.Implementation.BlockManagement;
 import Macchiato.Implementation.Expressions.Expression;
 
 public class Initialisation extends InstructionVariable {
-    public Initialisation(char variable, Expression value) {
+    private Initialisation(char variable, Expression value) {
         super(variable, value);
+    }
+    public static Initialisation of (char variable, Expression value){
+        return new Initialisation(variable, value);
     }
 
     @Override

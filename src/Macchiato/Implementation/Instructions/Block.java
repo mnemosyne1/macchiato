@@ -23,15 +23,15 @@ public class Block implements Instruction {
             return new Block(this);
         }
         public BlockBuilder initialiseVariable (char c, Expression e){
-            list.add (new Initialisation (c, e));
+            list.add (Initialisation.of(c, e));
             return this;
         }
         public BlockBuilder assignVariable (char c, Expression e){
-            list.add (new Assignment(c, e));
+            list.add (Assignment.to(c, e));
             return this;
         }
         public BlockBuilder print (Expression e){
-            list.add(new Print(e));
+            list.add(Print.the(e));
             return this;
         }
         public BlockBuilder block (BlockBuilder b){
