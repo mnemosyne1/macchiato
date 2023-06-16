@@ -5,6 +5,7 @@ import Macchiato.Implementation.Conditions.*;
 import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.*;
 
+import java.io.*;
 import java.util.Scanner;
 
 public interface Macchiato {
@@ -61,6 +62,20 @@ public interface Macchiato {
                     int layers = input.nextInt();
                     try {
                         System.out.println(BlockManagement.printValues(layers));
+                    } catch (BlockManagement.BlockPrintException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+                case "m" -> {
+                    // TODO: procedure declarations
+                    // to be done when procedures are implemented
+                    String path = input.next();
+                    try {
+                        FileWriter writer = new FileWriter(path);
+                        writer.write(BlockManagement.printValues(0));
+                        writer.close();
+                    } catch (IOException e){
+                        System.out.println("Błąd przy operacji na pliku!");
                     } catch (BlockManagement.BlockPrintException ex) {
                         System.out.println(ex.getMessage());
                     }
