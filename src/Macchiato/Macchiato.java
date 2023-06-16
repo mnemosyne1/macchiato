@@ -1,7 +1,6 @@
 package Macchiato;
 
 import Macchiato.Implementation.BlockManagement;
-import Macchiato.Implementation.Conditions.*;
 import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.*;
 
@@ -96,30 +95,5 @@ public interface Macchiato {
 
     static Instruction newAssignment(char c, Expression e) {
         return new Assignment(c, e);
-    }
-
-    /**CONDITIONS*/
-    static Condition newEqual(Expression a, Expression b) {
-        return new ConditionEqual(a, b);
-    }
-
-    static Condition newDifferent(Expression a, Expression b) {
-        return new ConditionDifferent(a, b);
-    }
-
-    static Condition newLess(Expression a, Expression b) {
-        return new ConditionLess(a, b);
-    }
-
-    static Condition newMore(Expression a, Expression b) {
-        return new ConditionMore(a, b);
-    }
-
-    static Condition newNotMore(Expression a, Expression b) {
-        return new ConditionNotMore(a, b);
-    }
-
-    static Condition newNotLess(Expression a, Expression b) {
-        return new ConditionNotLess(a, b);
     }
 }
