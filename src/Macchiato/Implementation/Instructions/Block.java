@@ -4,6 +4,7 @@ import Macchiato.Implementation.Conditions.Condition;
 import Macchiato.Implementation.Expressions.Expression;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Block implements Instruction {
     protected int index = 0;
@@ -48,6 +49,16 @@ public class Block implements Instruction {
         }
         public BlockBuilder newif (Condition c, BlockBuilder f){
             list.add (new If (c, f));
+            return this;
+        }
+
+        public BlockBuilder declareProcedure (String name, List<Character> arguments, BlockBuilder f){
+            list.add(new Procedure(name, arguments, f));
+            return this;
+        }
+
+        public BlockBuilder invoke (String name, List<Expression> arguments){
+            list.add(new ProcedureCall(name, arguments));
             return this;
         }
     }
