@@ -25,7 +25,7 @@ public class For extends Block {
             if (whichIteration >= last) throw new ProgramFinishedException();
             list.get(index).executeOne();
             if (index == 0)
-                new Initialisation(variable, Const.of(whichIteration)).executeOne();
+                Initialisation.of(variable, Const.of(whichIteration)).executeOne();
             if (list.get(index).isFinished()) {
                 index++;
                 if (index == list.size()) {
