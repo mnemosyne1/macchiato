@@ -164,7 +164,12 @@ public abstract class BlockManagement {
     }
 
     public static Procedure getProcedure (String name) throws ProcedureException{
-        Procedure ans = current.procedures.get(name);
+        Procedure ans = null;
+        BlockInstance b = current;
+        while (b != null && ans == null){
+            ans = b.procedures.get(name);
+            b = b.previous;
+        }
         if (ans == null) throw new ProcedureException();
         return ans;
     }
