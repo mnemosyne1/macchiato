@@ -1,6 +1,12 @@
 package Macchiato.Implementation;
 
 import Macchiato.Implementation.Expressions.Expression;
+import Macchiato.Implementation.Instructions.Procedure;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /*
 W Macchiato 1.0 ta implementacja pozwalała na uruchomienie tylko jednej
@@ -13,11 +19,13 @@ public abstract class BlockManagement {
         private final Integer[] variables;
         private final char firstchar = 'a';
         private final char lastchar = 'z';
+        private Map<String, Procedure> procedures;
 
         private BlockInstance(BlockInstance b) {
             previous = b;
             final int alphabetsize = lastchar - firstchar + 1;
             variables = new Integer[alphabetsize];
+            procedures = new HashMap<>();
         }
 
         private static class Reinitialisation extends Exception {
@@ -44,6 +52,9 @@ public abstract class BlockManagement {
         private boolean wasDeclared(char c) {
             if (c < firstchar || c > lastchar) return false;
             return variables[c - firstchar] != null;
+        }
+        private boolean wasDeclared (String procedure){
+            return procedures.containsKey(procedure);
         }
 
         private void initialise(char c, int x) throws Reinitialisation, WrongSymbol {
@@ -78,6 +89,10 @@ public abstract class BlockManagement {
             ans.append("Koniec listy zmiennych.");
             return ans.toString();
         }
+
+        private void declareProcedure (String name, Procedure procedure){
+            procedures.put(name, procedure);
+        }
     }
 
     public static class BlockOperationException extends Exception {
@@ -88,6 +103,8 @@ public abstract class BlockManagement {
         public String getMessage() {
             return "W programie nie ma tylu warstw zagnieżdżenia.";
         }
+    }
+    public static class ProcedureException extends Exception {
     }
 
     private static BlockInstance current = null;
@@ -144,5 +161,41 @@ public abstract class BlockManagement {
 
     public static String printValues() {
         return current.printValues();
+    }
+
+    public static Procedure getProcedure (String name) throws ProcedureException{
+        Procedure ans = null;
+        BlockInstance b = current;
+        while (b != null && ans == null){
+            ans = b.procedures.get(name);
+            b = b.previous;
+        }
+        if (ans == null) throw new ProcedureException();
+        return ans;
+    }
+
+    public static void addProcedure (String name, Procedure proc) throws ProcedureException{
+        if (current.wasDeclared(name))
+            throw new ProcedureException();
+        current.declareProcedure (name, proc);
+    }
+
+    public static String printProcedures() {
+        Set<String> visible = new HashSet<>();
+        StringBuilder ans = new StringBuilder("Widoczne procedury:\n");
+        BlockInstance b = current;
+        while (b != null){
+            Set<String> currentProcedures = b.procedures.keySet();
+            for (String proc : currentProcedures){
+                if (!visible.contains(proc)){
+                    visible.add(proc);
+                    String s = b.procedures.get(proc).procName() + "\n";
+                    ans.append (s);
+                }
+            }
+            b = b.previous;
+        }
+        ans.append("Koniec listy procedur.\n");
+        return ans.toString();
     }
 }
