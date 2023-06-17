@@ -3,6 +3,7 @@ package Macchiato.Implementation.Instructions;
 import Macchiato.Implementation.BlockManagement;
 import Macchiato.Implementation.Expressions.Const;
 import Macchiato.Implementation.Expressions.Variable;
+import Macchiato.Macchiato;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

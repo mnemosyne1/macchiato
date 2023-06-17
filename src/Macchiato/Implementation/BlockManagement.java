@@ -4,7 +4,9 @@ import Macchiato.Implementation.Expressions.Expression;
 import Macchiato.Implementation.Instructions.Procedure;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /*
 W Macchiato 1.0 ta implementacja pozwalała na uruchomienie tylko jednej
@@ -171,5 +173,24 @@ public abstract class BlockManagement {
         if (current.wasDeclared(name))
             throw new ProcedureException();
         current.declareProcedure (name, proc);
+    }
+
+    public static String printProcedures() {
+        Set<String> visible = new HashSet<>();
+        StringBuilder ans = new StringBuilder("Widoczne procedury:\n");
+        BlockInstance b = current;
+        while (b != null){
+            Set<String> currentProcedures = b.procedures.keySet();
+            for (String proc : currentProcedures){
+                if (!visible.contains(proc)){
+                    visible.add(proc);
+                    String s = b.procedures.get(proc).procName() + "\n";
+                    ans.append (s);
+                }
+            }
+            b = b.previous;
+        }
+        ans.append("Koniec listy procedur.\n");
+        return ans.toString();
     }
 }

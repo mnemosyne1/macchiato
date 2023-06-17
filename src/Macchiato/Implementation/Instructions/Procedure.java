@@ -50,4 +50,23 @@ public class Procedure extends InstructionSingle {
         }
         wasCalled = true;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder("proc ");
+        s.append(procName());
+        return s.toString();
+    }
+
+    public String procName (){
+        StringBuilder ans = new StringBuilder();
+        ans.append(name);
+        ans.append(" (");
+        for (int i = 0; i < argCount(); i++){
+            if (i > 0) ans.append(", ");
+            ans.append(args.get(i));
+        }
+        ans.append(")");
+        return ans.toString();
+    }
 }
