@@ -16,10 +16,6 @@ public class Block implements Instruction {
             list = new ArrayList<>();
             list.add(new BlockOpening());
         }
-        public BlockBuilder(ArrayList<Instruction> l){
-            this();
-            list.addAll(l);
-        }
         public Block build(){
             return new Block(this);
         }
