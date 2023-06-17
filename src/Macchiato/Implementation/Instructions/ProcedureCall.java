@@ -25,10 +25,10 @@ public class ProcedureCall implements Instruction {
             try {
                 declaration = BlockManagement.getProcedure(name);
             } catch (BlockManagement.ProcedureException ex){
-                throw new InstructionException(this);
+                throw new InstructionException(this, "Nie ma takiej procedury!");
             }
             if (declaration.argCount() != args.size())
-                throw new InstructionException(this);
+                throw new InstructionException(this, "Zła liczba argumentów!");
             instructions = declaration.getBB().build();
         }
         instructions.executeOne();
@@ -53,13 +53,14 @@ public class ProcedureCall implements Instruction {
     @Override
     public String toString() {
         if (instructions == null){
-            String ans = name + " (";
+            StringBuilder ans = new StringBuilder(name);
+            ans.append(" (");
             for (int i = 0; i < args.size(); i++){
-                if (i > 0) ans += ", ";
-                ans += args.get(i).toString();
+                if (i > 0) ans.append(", ");
+                ans.append(args.get(i).toString());
             }
-            ans += ")";
-            return ans;
+            ans.append(")");
+            return ans.toString();
         }
         return instructions.toString();
     }

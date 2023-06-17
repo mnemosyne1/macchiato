@@ -46,16 +46,14 @@ public class Procedure extends InstructionSingle {
         try {
             BlockManagement.addProcedure(name, this);
         } catch (BlockManagement.ProcedureException e) {
-            throw new InstructionException(this);
+            throw new InstructionException(this, "Już istnieje taka procedura!");
         }
         wasCalled = true;
     }
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("proc ");
-        s.append(procName());
-        return s.toString();
+        return "proc " + procName();
     }
 
     public String procName (){
