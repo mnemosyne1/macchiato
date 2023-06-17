@@ -65,15 +65,15 @@ public interface Macchiato {
                     }
                 }
                 case "m" -> {
-                    // TODO: procedure declarations
-                    // to be done when procedures are implemented
                     String path = input.next();
                     try {
                         FileWriter writer = new FileWriter(path);
+                        writer.write(BlockManagement.printProcedures());
                         writer.write(BlockManagement.printValues(0));
                         writer.close();
                     } catch (IOException e){
                         System.out.println("Błąd przy operacji na pliku!");
+                        System.out.println(e.getMessage());
                     } catch (BlockManagement.BlockPrintException ex) {
                         System.out.println(ex.getMessage());
                     }
