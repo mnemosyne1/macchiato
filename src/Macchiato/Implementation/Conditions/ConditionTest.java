@@ -12,20 +12,19 @@ class ConditionTest {
         try {
             boolean check;
             check = Condition.newDifferent(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (check);
+            assertTrue(check);
             check = Condition.newEqual(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (!check);
+            assertTrue(!check);
             check = Condition.newLess(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (check);
+            assertTrue(check);
             check = Condition.newMore(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (!check);
+            assertTrue(!check);
             check = Condition.newNotLess(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (!check);
+            assertTrue(!check);
             check = Condition.newNotMore(Const.of(1), Const.of(2)).checkCondition();
-            assertTrue (check);
+            assertTrue(check);
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }

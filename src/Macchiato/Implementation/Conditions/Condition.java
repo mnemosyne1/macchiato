@@ -29,6 +29,7 @@ public abstract class Condition {
     }
 
     public abstract boolean checkCondition() throws ConditionException;
+
     public static Condition newEqual(Expression a, Expression b) {
         return new ConditionEqual(a, b);
     }
@@ -52,6 +53,7 @@ public abstract class Condition {
     public static Condition newNotLess(Expression a, Expression b) {
         return new ConditionNotLess(a, b);
     }
+
     @Override
     public String toString() {
         return exp1.toString() + comparisonSign + exp2.toString();

@@ -12,6 +12,7 @@ public class ProcedureCall implements Instruction {
     private boolean started;
     private Procedure declaration;
     private Block instructions;
+
     protected ProcedureCall(String procedure, List<Expression> args) {
         this.args = args;
         name = procedure;
@@ -21,10 +22,10 @@ public class ProcedureCall implements Instruction {
     @Override
     public void executeOne() throws InstructionException, ProgramFinishedException {
         if (isFinished()) undo();
-        if (instructions == null){
+        if (instructions == null) {
             try {
                 declaration = BlockManagement.getProcedure(name);
-            } catch (BlockManagement.ProcedureException ex){
+            } catch (BlockManagement.ProcedureException ex) {
                 throw new InstructionException(this, "Nie ma takiej procedury!");
             }
             if (declaration.argCount() != args.size())
@@ -32,7 +33,7 @@ public class ProcedureCall implements Instruction {
             instructions = declaration.getBB().build();
         }
         instructions.executeOne();
-        if (!started){
+        if (!started) {
             declaration.initParams(args);
             started = true;
         }
@@ -52,10 +53,10 @@ public class ProcedureCall implements Instruction {
 
     @Override
     public String toString() {
-        if (instructions == null){
+        if (instructions == null) {
             StringBuilder ans = new StringBuilder(name);
             ans.append(" (");
-            for (int i = 0; i < args.size(); i++){
+            for (int i = 0; i < args.size(); i++) {
                 if (i > 0) ans.append(", ");
                 ans.append(args.get(i).toString());
             }

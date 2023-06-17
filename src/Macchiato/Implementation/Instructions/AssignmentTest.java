@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AssignmentTest {
     @Test
-    void test(){
+    void test() {
         try {
             final int x = 4;
             new BlockOpening().executeOne();
             Initialisation.of('z', Const.of(0)).executeOne();
             Assignment.to('z', Const.of(x)).executeOne();
             assertEquals(x, Variable.named('z').evaluate());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             fail();
         }
     }

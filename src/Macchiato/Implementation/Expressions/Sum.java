@@ -6,8 +6,9 @@ public class Sum extends ExpressionCombo {
         super(exp1, exp2);
         sign = '+';
     }
-    public static Sum of (Expression exp1, Expression exp2){
-        return new Sum (exp1, exp2);
+
+    public static Sum of(Expression exp1, Expression exp2) {
+        return new Sum(exp1, exp2);
     }
 
     @Override

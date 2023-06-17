@@ -10,32 +10,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IfTest {
     @Test
-    void test1 () { // if
+    void test1() { // if
         final int x = 1;
         try {
             new BlockOpening().executeOne();
             Initialisation.of('z', Const.of(x)).executeOne();
-            If f = new If(Condition.newLess(Variable.named('z'), Const.of (3)), new Block.BlockBuilder()
+            If f = new If(Condition.newLess(Variable.named('z'), Const.of(3)), new Block.BlockBuilder()
                     .assignVariable('z', Sum.of(Variable.named('z'), Const.of(1))));
             while (!f.isFinished()) f.executeOne();
             assertEquals((x < 3 ? x + 1 : x), Variable.named('z').evaluate());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             fail();
         }
     }
 
     @Test
-    void test2 () { // if + else
+    void test2() { // if + else
         final int x = 4;
         try {
             new BlockOpening().executeOne();
             Initialisation.of('z', Const.of(x)).executeOne();
-            If f = new If(Condition.newNotMore(Variable.named('z'), Const.of (3)), new Block.BlockBuilder()
+            If f = new If(Condition.newNotMore(Variable.named('z'), Const.of(3)), new Block.BlockBuilder()
                     .assignVariable('z', Sum.of(Variable.named('z'), Const.of(1))), new Block.BlockBuilder()
                     .assignVariable('z', Const.of(-1)));
             while (!f.isFinished()) f.executeOne();
             assertEquals((x <= 3 ? x + 1 : -1), Variable.named('z').evaluate());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             fail();
         }
     }

@@ -12,15 +12,16 @@ class DifferenceTest {
         Difference d = Difference.of(Const.of(5), Const.of(1));
         try {
             assertEquals(d.evaluate(), 4);
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }
+
     @Test
     void of2() {
         BlockManagement.newBlock();
         Difference d = Difference.of(Const.of(5), Variable.named('x'));
-        assertThrows(Expression.ExpressionEvaluationException.class, ()->d.evaluate());
+        assertThrows(Expression.ExpressionEvaluationException.class, () -> d.evaluate());
         BlockManagement.endBlock();
     }
 

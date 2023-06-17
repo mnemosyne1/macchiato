@@ -7,7 +7,8 @@ public class Initialisation extends InstructionVariable {
     private Initialisation(char variable, Expression value) {
         super(variable, value);
     }
-    public static Initialisation of (char variable, Expression value){
+
+    public static Initialisation of(char variable, Expression value) {
         return new Initialisation(variable, value);
     }
 

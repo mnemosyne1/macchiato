@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProcedureTest {
     @Test
-    void proc (){
+    void proc() {
         var program = new Block.BlockBuilder()
                 .declareProcedure("aaa", List.of('a'),
                         new Block.BlockBuilder().print(Variable.named('a')))

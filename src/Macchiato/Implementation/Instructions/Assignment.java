@@ -7,9 +7,11 @@ public class Assignment extends InstructionVariable {
     private Assignment(char variable, Expression value) {
         super(variable, value);
     }
-    public static Assignment to (char variable, Expression value){
+
+    public static Assignment to(char variable, Expression value) {
         return new Assignment(variable, value);
     }
+
     @Override
     public void executeOne() throws InstructionException {
         wasCalled = true;

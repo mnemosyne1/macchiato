@@ -53,7 +53,8 @@ public abstract class BlockManagement {
             if (c < firstchar || c > lastchar) return false;
             return variables[c - firstchar] != null;
         }
-        private boolean wasDeclared (String procedure){
+
+        private boolean wasDeclared(String procedure) {
             return procedures.containsKey(procedure);
         }
 
@@ -90,7 +91,7 @@ public abstract class BlockManagement {
             return ans.toString();
         }
 
-        private void declareProcedure (String name, Procedure procedure){
+        private void declareProcedure(String name, Procedure procedure) {
             procedures.put(name, procedure);
         }
     }
@@ -104,6 +105,7 @@ public abstract class BlockManagement {
             return "W programie nie ma tylu warstw zagnieżdżenia.";
         }
     }
+
     public static class ProcedureException extends Exception {
     }
 
@@ -163,10 +165,10 @@ public abstract class BlockManagement {
         return current.printValues();
     }
 
-    public static Procedure getProcedure (String name) throws ProcedureException{
+    public static Procedure getProcedure(String name) throws ProcedureException {
         Procedure ans = null;
         BlockInstance b = current;
-        while (b != null && ans == null){
+        while (b != null && ans == null) {
             ans = b.procedures.get(name);
             b = b.previous;
         }
@@ -174,23 +176,23 @@ public abstract class BlockManagement {
         return ans;
     }
 
-    public static void addProcedure (String name, Procedure proc) throws ProcedureException{
+    public static void addProcedure(String name, Procedure proc) throws ProcedureException {
         if (current.wasDeclared(name))
             throw new ProcedureException();
-        current.declareProcedure (name, proc);
+        current.declareProcedure(name, proc);
     }
 
     public static String printProcedures() {
         Set<String> visible = new HashSet<>();
         StringBuilder ans = new StringBuilder("Widoczne procedury:\n");
         BlockInstance b = current;
-        while (b != null){
+        while (b != null) {
             Set<String> currentProcedures = b.procedures.keySet();
-            for (String proc : currentProcedures){
-                if (!visible.contains(proc)){
+            for (String proc : currentProcedures) {
+                if (!visible.contains(proc)) {
                     visible.add(proc);
                     String s = b.procedures.get(proc).procName() + "\n";
-                    ans.append (s);
+                    ans.append(s);
                 }
             }
             b = b.previous;

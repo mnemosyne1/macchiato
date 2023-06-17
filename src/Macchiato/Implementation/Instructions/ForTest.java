@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ForTest {
     @Test
-    void test () {
+    void test() {
         final int x = 4;
         try {
             new BlockOpening().executeOne();
@@ -18,7 +18,7 @@ class ForTest {
                     .assignVariable('z', Sum.of(Variable.named('z'), Const.of(1))));
             while (!f.isFinished()) f.executeOne();
             assertEquals(x, Variable.named('z').evaluate());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             fail();
         }
     }

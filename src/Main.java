@@ -19,32 +19,32 @@ public class Main {
         test1(true);
     }
 
-    private static void test0 (boolean debug){
+    private static void test0(boolean debug) {
         // example test from Macchiato 1.0
         var program = new Block.BlockBuilder()
-            .initialiseVariable('n', Const.of(30))
-            .newfor('k', Difference.of(Variable.named('n'), Const.of(1)),
-                new Block.BlockBuilder()
-                    .initialiseVariable('p', Const.of(1))
-                    .assignVariable('k', Sum.of(Variable.named('k'), Const.of(2)))
-                    .newfor('i', Difference.of(Variable.named('k'), Const.of(2)),
+                .initialiseVariable('n', Const.of(30))
+                .newfor('k', Difference.of(Variable.named('n'), Const.of(1)),
                         new Block.BlockBuilder()
-                            .assignVariable('i', Sum.of(Variable.named('i'), Const.of(2)))
-                            .newif (Condition.newEqual(Modulo.of(Variable.named('k'),
-                                Variable.named('i')), Const.of(0)), new Block.BlockBuilder()
-                                .assignVariable('p', Const.of(0))
-                            )
-                    )
-                    .newif(Condition.newEqual(Variable.named('p'), Const.of(1)),
-                            new Block.BlockBuilder().print(Variable.named('k'))
-                    )
-            )
-            .build();
+                                .initialiseVariable('p', Const.of(1))
+                                .assignVariable('k', Sum.of(Variable.named('k'), Const.of(2)))
+                                .newfor('i', Difference.of(Variable.named('k'), Const.of(2)),
+                                        new Block.BlockBuilder()
+                                                .assignVariable('i', Sum.of(Variable.named('i'), Const.of(2)))
+                                                .newif(Condition.newEqual(Modulo.of(Variable.named('k'),
+                                                        Variable.named('i')), Const.of(0)), new Block.BlockBuilder()
+                                                        .assignVariable('p', Const.of(0))
+                                                )
+                                )
+                                .newif(Condition.newEqual(Variable.named('p'), Const.of(1)),
+                                        new Block.BlockBuilder().print(Variable.named('k'))
+                                )
+                )
+                .build();
         if (debug) Macchiato.debug(program);
         else Macchiato.execute(program);
     }
 
-    private static void basicProcedureTest (boolean debug){
+    private static void basicProcedureTest(boolean debug) {
         var program = new Block.BlockBuilder()
                 .declareProcedure("aaa", List.of('a'),
                         new Block.BlockBuilder()
@@ -62,7 +62,7 @@ public class Main {
         else Macchiato.execute(program);
     }
 
-    private static void test1 (boolean debug){
+    private static void test1(boolean debug) {
         var program = new Block.BlockBuilder()
                 .initialiseVariable('x', Const.of(101))
                 .initialiseVariable('y', Const.of(1))
