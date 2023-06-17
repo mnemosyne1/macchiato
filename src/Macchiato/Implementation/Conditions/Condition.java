@@ -29,7 +29,29 @@ public abstract class Condition {
     }
 
     public abstract boolean checkCondition() throws ConditionException;
+    public static Condition newEqual(Expression a, Expression b) {
+        return new ConditionEqual(a, b);
+    }
 
+    public static Condition newDifferent(Expression a, Expression b) {
+        return new ConditionDifferent(a, b);
+    }
+
+    public static Condition newLess(Expression a, Expression b) {
+        return new ConditionLess(a, b);
+    }
+
+    public static Condition newMore(Expression a, Expression b) {
+        return new ConditionMore(a, b);
+    }
+
+    public static Condition newNotMore(Expression a, Expression b) {
+        return new ConditionNotMore(a, b);
+    }
+
+    public static Condition newNotLess(Expression a, Expression b) {
+        return new ConditionNotLess(a, b);
+    }
     @Override
     public String toString() {
         return exp1.toString() + comparisonSign + exp2.toString();

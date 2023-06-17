@@ -1,3 +1,4 @@
+import Macchiato.Implementation.Conditions.Condition;
 import Macchiato.Implementation.Expressions.*;
 import Macchiato.Implementation.Instructions.Block;
 import Macchiato.Macchiato;
@@ -21,12 +22,12 @@ public class Main {
                     .newfor('i', Difference.of(Variable.named('k'), Const.of(2)),
                         new Block.BlockBuilder()
                             .assignVariable('i', Sum.of(Variable.named('i'), Const.of(2)))
-                            .newif (Macchiato.newEqual(Modulo.of(Variable.named('k'),
+                            .newif (Condition.newEqual(Modulo.of(Variable.named('k'),
                                 Variable.named('i')), Const.of(0)), new Block.BlockBuilder()
                                 .assignVariable('p', Const.of(0))
                             )
                     )
-                    .newif(Macchiato.newEqual(Variable.named('p'), Const.of(1)),
+                    .newif(Condition.newEqual(Variable.named('p'), Const.of(1)),
                             new Block.BlockBuilder().print(Variable.named('k'))
                     )
             )
