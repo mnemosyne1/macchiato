@@ -19,7 +19,7 @@ public abstract class BlockManagement {
         private final Integer[] variables;
         private final char firstchar = 'a';
         private final char lastchar = 'z';
-        private Map<String, Procedure> procedures;
+        private final Map<String, Procedure> procedures;
 
         private BlockInstance(BlockInstance b) {
             previous = b;
