@@ -10,6 +10,7 @@ public interface Instruction {
         public InstructionException(Instruction bad) {
             this.bad = bad;
         }
+
         public InstructionException(Instruction bad, String message) {
             this.bad = bad;
             this.message = message;
@@ -17,9 +18,9 @@ public interface Instruction {
 
         @Override
         public String getMessage() {
-            StringBuilder ans = new StringBuilder ("Błąd w instrukcji: " + bad.toString() + '\n');
-            if (message != null){
-                ans.append (message);
+            StringBuilder ans = new StringBuilder("Błąd w instrukcji: " + bad.toString() + '\n');
+            if (message != null) {
+                ans.append(message);
                 ans.append("\n");
             }
             ans.append(BlockManagement.printValues());

@@ -18,7 +18,7 @@ public class For extends Block {
     @Override
     public void executeOne() throws InstructionException, ProgramFinishedException {
         try {
-            if (index == 0) { //before first step in this iteration
+            if (last == null) { //before first step in this iteration
                 last = limit.evaluate();
                 if (last <= 0) return;
             }
@@ -41,13 +41,14 @@ public class For extends Block {
 
     @Override
     public boolean isFinished() {
-        return whichIteration >= last;
+        return last != null && whichIteration >= last;
     }
 
     @Override
     public void undo() {
         super.undo();
         whichIteration = 0;
+        last = null;
     }
 
     @Override

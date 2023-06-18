@@ -6,7 +6,8 @@ public class Product extends ExpressionCombo {
         super(exp1, exp2);
         sign = '*';
     }
-    public static Product of(Expression exp1, Expression exp2){
+
+    public static Product of(Expression exp1, Expression exp2) {
         return new Product(exp1, exp2);
     }
 

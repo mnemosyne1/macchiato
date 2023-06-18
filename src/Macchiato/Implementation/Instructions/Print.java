@@ -8,7 +8,8 @@ public class Print extends InstructionSingle {
     private Print(Expression e) {
         this.e = e;
     }
-    public static Print the (Expression e){
+
+    public static Print the(Expression e) {
         return new Print(e);
     }
 

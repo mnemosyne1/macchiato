@@ -11,15 +11,16 @@ class ProductTest {
         Product p = Product.of(Const.of(5), Const.of(1));
         try {
             assertEquals(p.evaluate(), 5);
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }
+
     @Test
     void of2() {
         BlockManagement.newBlock();
         Product p = Product.of(Const.of(5), Variable.named('x'));
-        assertThrows(Expression.ExpressionEvaluationException.class, ()->p.evaluate());
+        assertThrows(Expression.ExpressionEvaluationException.class, () -> p.evaluate());
         BlockManagement.endBlock();
     }
 

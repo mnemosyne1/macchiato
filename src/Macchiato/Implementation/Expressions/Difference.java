@@ -6,7 +6,8 @@ public class Difference extends ExpressionCombo {
         super(exp1, exp2);
         sign = '-';
     }
-    public static Difference of (Expression exp1, Expression exp2){
+
+    public static Difference of(Expression exp1, Expression exp2) {
         return new Difference(exp1, exp2);
     }
 

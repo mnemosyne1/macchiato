@@ -6,7 +6,8 @@ public class Modulo extends ExpressionCombo {
         super(exp1, exp2);
         sign = '%';
     }
-    public static Modulo of (Expression exp1, Expression exp2){
+
+    public static Modulo of(Expression exp1, Expression exp2) {
         return new Modulo(exp1, exp2);
     }
 

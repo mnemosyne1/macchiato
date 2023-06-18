@@ -9,7 +9,8 @@ public class Variable implements Expression {
     public Variable(char variable) {
         this.variable = variable;
     }
-    public static Variable named (char variable){
+
+    public static Variable named(char variable) {
         return new Variable(variable);
     }
 

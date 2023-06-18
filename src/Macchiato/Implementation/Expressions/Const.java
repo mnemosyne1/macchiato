@@ -8,9 +8,10 @@ public class Const implements Expression {
         this.value = value;
     }
 
-    public static Const of (int value){
-        return new Const (value);
+    public static Const of(int value) {
+        return new Const(value);
     }
+
     @Override
     public int evaluate() {
         return value;

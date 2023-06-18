@@ -71,7 +71,7 @@ public interface Macchiato {
                         writer.write(BlockManagement.printProcedures());
                         writer.write(BlockManagement.printValues(0));
                         writer.close();
-                    } catch (IOException e){
+                    } catch (IOException e) {
                         System.out.println("Błąd przy operacji na pliku!");
                         System.out.println(e.getMessage());
                     } catch (BlockManagement.BlockPrintException ex) {

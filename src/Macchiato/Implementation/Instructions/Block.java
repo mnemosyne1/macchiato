@@ -8,64 +8,69 @@ import java.util.List;
 
 public class Block implements Instruction {
     protected int index = 0;
-    protected ArrayList<Instruction> list;
+    protected final ArrayList<Instruction> list;
 
     public static class BlockBuilder {
         protected ArrayList<Instruction> list;
-        public BlockBuilder(){
+
+        public BlockBuilder() {
             list = new ArrayList<>();
             list.add(new BlockOpening());
         }
-        public BlockBuilder(ArrayList<Instruction> l){
-            this();
-            list.addAll(l);
-        }
-        public Block build(){
+
+        public Block build() {
             return new Block(this);
         }
-        public BlockBuilder initialiseVariable (char c, Expression e){
-            list.add (Initialisation.of(c, e));
+
+        public BlockBuilder initialiseVariable(char c, Expression e) {
+            list.add(Initialisation.of(c, e));
             return this;
         }
-        public BlockBuilder assignVariable (char c, Expression e){
-            list.add (Assignment.to(c, e));
+
+        public BlockBuilder assignVariable(char c, Expression e) {
+            list.add(Assignment.to(c, e));
             return this;
         }
-        public BlockBuilder print (Expression e){
+
+        public BlockBuilder print(Expression e) {
             list.add(Print.the(e));
             return this;
         }
-        public BlockBuilder block (BlockBuilder b){
+
+        public BlockBuilder block(BlockBuilder b) {
             /*
             everything we need, for example opening and closure of block
             is guaranteed by b or constructor, so we don't have to do anything
              */
-            list.add (new Block(b));
-            return this;
-        }
-        public BlockBuilder newfor (char c, Expression e, BlockBuilder f){
-            list.add (new For (c, e, f));
-            return this;
-        }
-        public BlockBuilder newif (Condition c, BlockBuilder f){
-            list.add (new If (c, f));
+            list.add(new Block(b));
             return this;
         }
 
-        public BlockBuilder declareProcedure (String name, List<Character> arguments, BlockBuilder f){
+        public BlockBuilder newfor(char c, Expression e, BlockBuilder f) {
+            list.add(new For(c, e, f));
+            return this;
+        }
+
+        public BlockBuilder newif(Condition c, BlockBuilder f) {
+            list.add(new If(c, f));
+            return this;
+        }
+
+        public BlockBuilder declareProcedure(String name, List<Character> arguments, BlockBuilder f) {
             list.add(new Procedure(name, arguments, f));
             return this;
         }
 
-        public BlockBuilder invoke (String name, List<Expression> arguments){
+        public BlockBuilder invoke(String name, List<Expression> arguments) {
             list.add(new ProcedureCall(name, arguments));
             return this;
         }
     }
-    protected Block (BlockBuilder b){
+
+    protected Block(BlockBuilder b) {
         list = new ArrayList<>();
         list.addAll(b.list);
-        list.add (new BlockClosure());
+        list.add(new BlockClosure());
     }
 
     public void finish() {
