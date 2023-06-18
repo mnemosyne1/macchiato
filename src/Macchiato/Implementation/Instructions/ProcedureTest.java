@@ -3,7 +3,6 @@ package Macchiato.Implementation.Instructions;
 import Macchiato.Implementation.BlockManagement;
 import Macchiato.Implementation.Expressions.Const;
 import Macchiato.Implementation.Expressions.Variable;
-import Macchiato.Macchiato;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -21,7 +20,7 @@ class ProcedureTest {
                 .invoke("aaa", List.of(Const.of(1))) // prints 1
                 .invoke("aaa", List.of(Variable.named('b'))) // prints 2
                 //.invoke("aaa", List.of(Const.of(1), Const.of(2))) // error
-                //.invoke("aaa", List.of()) // eror
+                //.invoke("aaa", List.of()) // error
                 .invoke("aab", List.of(Const.of(1))) // error
                 .build();
         boolean ok = false;

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Block implements Instruction {
     protected int index = 0;
-    protected ArrayList<Instruction> list;
+    protected final ArrayList<Instruction> list;
 
     public static class BlockBuilder {
         protected ArrayList<Instruction> list;
